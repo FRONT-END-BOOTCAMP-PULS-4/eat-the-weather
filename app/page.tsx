@@ -11,6 +11,7 @@ import { useCurrentWeather } from '@/lib/hooks/useWeather';
 import { useAutoLocation } from '@/lib/hooks/useAutoLocation';
 import { CurrentWeatherResponse } from '@/lib/types/weather';
 
+
 export default function HomePage() {
   useAutoLocation();
   const userName = useUserStore((state) => state.user.nickname);
@@ -104,7 +105,7 @@ export default function HomePage() {
           <img src="/sun.png" alt="Logo" className="w-auto h-65 md:h-80 mt-3" />
 
           {/* 날씨 설명 */}
-          <div className="mt-4 font-bold">{userName}님, </div>
+          <div className="mt-4 font-bold">{userName || "테루루"}님, </div>
           <div className="font-bold">{weatherMessage(userTemperatureSensitivity, weather)}</div>
           {/* 게시판 버튼 */}
           <Link href="/posts">
@@ -112,8 +113,7 @@ export default function HomePage() {
               variant="outline"
               className="w-100 md: w-90 h-11 m-2 mt-3 bg-red-300 rounded-4xl font-bold"
             >
-              OO동 유저들의 실시간 날씨는? <br />
-              N명의 유저 대화 중
+              {selectedWeatherRegion?.name} 유저들의 실시간 날씨는?
             </Button>
           </Link>
         </div>
